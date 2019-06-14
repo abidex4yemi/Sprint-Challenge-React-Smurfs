@@ -32,8 +32,13 @@ const ListItem = styled.li`
 		transition: 0.2s;
 
 		&:hover {
-			color: #da1b60;
+			color: #00d6d6;
 		}
+	}
+
+	.selected {
+		font-weight: bold;
+		color: #00d6d6;
 	}
 `;
 
@@ -48,7 +53,9 @@ export const NavBar = props => {
 						{navLinkArray.map(({ to, linkText, id }) => {
 							return (
 								<ListItem key={id}>
-									<NavLink to={to}>{linkText}</NavLink>
+									<NavLink to={to} activeClassName="selected">
+										{linkText}
+									</NavLink>
 								</ListItem>
 							);
 						})}

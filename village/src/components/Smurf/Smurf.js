@@ -10,6 +10,7 @@ const SmurfStyled = styled.div`
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 	padding: 1rem;
+	color: #656e78;
 
 	&:hover {
 		box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -18,6 +19,10 @@ const SmurfStyled = styled.div`
 	h3,
 	p {
 		margin-bottom: 1.5rem;
+	}
+
+	h3 {
+		color: rgba(16, 16, 16, 1);
 	}
 `;
 

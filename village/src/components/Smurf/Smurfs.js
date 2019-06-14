@@ -10,8 +10,11 @@ const SmurfsStyled = styled.section`
 	flex-wrap: wrap;
 
 	a {
-		color: #006cb0;
 		text-decoration: none;
+
+		&:hover {
+			color: #656e78;
+		}
 	}
 `;
 
