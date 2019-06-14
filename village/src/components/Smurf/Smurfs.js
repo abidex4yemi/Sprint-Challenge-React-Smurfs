@@ -8,7 +8,7 @@ export const Smurfs = props => {
 	return (
 		<section>
 			<h1>Smurf Village</h1>
-			<div>{smurfs.map(smurf => <Smurf key={smurf.id} {...smurfs} />)}</div>
+			<div>{smurfs.map(smurf => <Smurf key={smurf.id} {...smurf} />)}</div>
 		</section>
 	);
 };

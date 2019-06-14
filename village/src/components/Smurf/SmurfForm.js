@@ -6,7 +6,8 @@ export class SmurfForm extends Component {
 		this.state = {
 			name: '',
 			age: '',
-			height: ''
+			height: '',
+			errors: {}
 		};
 	}
 
@@ -17,6 +18,31 @@ export class SmurfForm extends Component {
 			age: '',
 			height: ''
 		});
+	};
+
+	validateInput = ({ name, age, height }) => {
+		let errors = {};
+
+		if (name.trim() === '') {
+			errors.name = 'Name is required';
+		}
+
+		if (height.trim() === '') {
+			errors.email = 'Height is required';
+		}
+
+		if (age.trim() === '') {
+			errors.age = 'Age is required';
+		}
+
+		this.setState(() => ({
+			name: '',
+			age: '',
+			height: '',
+			errors: {}
+		}));
+
+		return errors;
 	};
 
 	handleInputChange = evt => {

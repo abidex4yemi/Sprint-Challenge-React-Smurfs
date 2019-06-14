@@ -31,12 +31,12 @@ export class App extends Component {
 		this.state = {
 			smurfs: []
 		};
-		this.baseURL = 'http://localhost:3333/smurfs';
+		this.baseURL = 'http://localhost:3333';
 	}
 
 	componentDidMount() {
 		const url = `${this.baseURL}/smurfs`;
-		this.getAllFriends(url);
+		this.getAllSmurfData(url);
 	}
 
 	getAllSmurfData = url => {
