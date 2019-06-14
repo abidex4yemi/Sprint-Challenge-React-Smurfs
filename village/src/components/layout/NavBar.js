@@ -5,8 +5,8 @@ import styled from 'styled-components';
 
 const NavBarStyles = styled.header`
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-	border-bottom: 1px solid #201c29;
-	background: #001628;
+	border-bottom: 1px solid #002a32;
+	background: #002a32;
 	padding: 1.5rem 0;
 `;
 
