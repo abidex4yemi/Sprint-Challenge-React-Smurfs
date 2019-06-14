@@ -1,6 +1,29 @@
 import React, { Component } from 'react';
-import SmurfForm from './components/Smurf/SmurfForm';
-import Smurfs from './components/Smurf/Smurfs';
+import axios from 'axios';
+import uuid from 'uuid';
+import { Route } from 'react-router-dom';
+import { AllSmurf } from './components/pages/SmurfPages/AllSmurf';
+import { SingleSmurf } from './components/pages/SmurfPages/SingleSmurf';
+import { AddSmurf } from './components/pages/SmurfPages/AddSmurf';
+
+// Smurf page page routes data
+const routeDetails = [
+	{
+		id: uuid(),
+		path: '/',
+		ComponentToRender: AllSmurf
+	},
+	{
+		id: uuid(),
+		path: '/smurf/:id',
+		ComponentToRender: SingleSmurf
+	},
+	{
+		id: uuid(),
+		path: '/smurf/add',
+		ComponentToRender: AddSmurf
+	}
+];
 
 export class App extends Component {
 	constructor(props) {
@@ -8,16 +31,35 @@ export class App extends Component {
 		this.state = {
 			smurfs: []
 		};
+		this.baseURL = 'http://localhost:3333/smurfs';
 	}
-	// add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
-	// Notice what your map function is looping over and returning inside of Smurfs.
-	// You'll need to make sure you have the right properties on state and pass them down to props.
+
+	componentDidMount() {
+		const url = `${this.baseURL}/smurfs`;
+		this.getAllFriends(url);
+	}
+
+	getAllSmurfData = url => {
+		axios
+			.get(url)
+			.then(res => {
+				this.setState(() => ({ smurfs: res.data }));
+			})
+			.catch(err => err)
+			.finally(err => err);
+	};
+
 	render() {
+		const { smurfs } = this.state;
+
 		return (
-			<div className="App">
-				<SmurfForm />
-				<Smurfs smurfs={this.state.smurfs} />
-			</div>
+			<React.Fragment>
+				{routeDetails.map(({ path, id, ComponentToRender }) => {
+					return (
+						<Route key={id} exact path={path} render={props => <ComponentToRender {...props} smurfs={smurfs} />} />
+					);
+				})}
+			</React.Fragment>
 		);
 	}
 }
