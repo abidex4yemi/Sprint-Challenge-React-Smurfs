@@ -19,7 +19,7 @@ const SmurfsStyled = styled.section`
 `;
 
 export const Smurfs = props => {
-	const { smurfs } = props;
+	const { smurfs, deleteFriend } = props;
 
 	return (
 		<SmurfsStyled>
@@ -33,7 +33,7 @@ export const Smurfs = props => {
 						}
 					}}
 				>
-					<Smurf {...smurf} />
+					<Smurf {...smurf} deleteFriend={deleteFriend} />
 				</Link>
 			))}
 		</SmurfsStyled>

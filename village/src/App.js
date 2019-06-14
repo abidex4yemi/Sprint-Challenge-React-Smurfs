@@ -4,7 +4,7 @@ import uuid from 'uuid';
 import { Route, Switch } from 'react-router-dom';
 import { AllSmurf } from './components/pages/SmurfPages/AllSmurf';
 import { SingleSmurf } from './components/pages/SmurfPages/SingleSmurf';
-import { AddSmurf } from './components/pages/SmurfPages/AddSmurf';
+import { SmurfForm } from './components/pages/SmurfPages/SmurfForm';
 
 // Smurf page page routes data
 const routeDetails = [
@@ -16,12 +16,17 @@ const routeDetails = [
 	{
 		id: uuid(),
 		path: '/smurf/add',
-		ComponentToRender: AddSmurf
+		ComponentToRender: SmurfForm
 	},
 	{
 		id: uuid(),
 		path: '/smurf/:id',
 		ComponentToRender: SingleSmurf
+	},
+	{
+		id: uuid(),
+		path: '/smurf/:id/edit',
+		ComponentToRender: SmurfForm
 	}
 ];
 
@@ -55,6 +60,22 @@ export class App extends Component {
 		}));
 	};
 
+	deleteFriend = id => {
+		this.setState(prevState => {
+			const smurf = prevState.smurfs.find(smurf => smurf.id === id);
+			if (smurf) {
+				const url = `${this.baseURL}/smurfs/${smurf.id}`;
+				axios
+					.delete(url)
+					.then(res => {
+						this.setState(() => ({ smurfs: res.data }));
+					})
+					.catch(err => err)
+					.finally(err => err);
+			}
+		});
+	};
+
 	render() {
 		const { smurfs } = this.state;
 
@@ -67,7 +88,12 @@ export class App extends Component {
 							exact
 							path={path}
 							render={props => (
-								<ComponentToRender {...props} smurfs={smurfs} updateSmurfsList={this.updateSmurfsList} />
+								<ComponentToRender
+									{...props}
+									smurfs={smurfs}
+									updateSmurfsList={this.updateSmurfsList}
+									deleteFriend={this.deleteFriend}
+								/>
 							)}
 						/>
 					);

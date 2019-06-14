@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const SmurfStyled = styled.div`
 	font-size: 1.6rem;
@@ -26,8 +27,55 @@ const SmurfStyled = styled.div`
 	}
 `;
 
+const ActionsContainerStyled = styled.div`
+	display: flex;
+	justify-content: space-between;
+	padding: 1rem;
+
+	div {
+		width: 50%;
+	}
+
+	div a,
+	button {
+		width: 40%;
+		cursor: pointer;
+		font-size: 1.8rem;
+		outline: 0;
+		display: block;
+	}
+
+	div a {
+		border: 0;
+		height: 40px;
+		color: #201c29;
+		border: 1px solid #ffc107;
+		text-decoration: none;
+		text-align: center;
+		line-height: 2;
+		transition: 0.2s;
+		display: block;
+		width: auto;
+
+		&:hover {
+			background: #ffc107;
+			color: #fff;
+		}
+	}
+
+	button.delete {
+		border: 1px solid #dc3545;
+
+		&:hover {
+			background: #dc3545;
+			color: #fff;
+		}
+	}
+`;
+
 export const Smurf = props => {
-	const { name, age, height } = props;
+	const { name, age, height, id, deleteFriend } = props;
+
 	return (
 		<SmurfStyled>
 			<h3>{name}</h3>
@@ -35,6 +83,24 @@ export const Smurf = props => {
 				<strong>{height} tall</strong>
 			</p>
 			<p>{age} smurf years old</p>
+
+			<ActionsContainerStyled>
+				<div>
+					<Link to={`/smurf/${id}/edit`} className="edit">
+						Edit
+					</Link>
+				</div>
+				<button
+					type="button"
+					className="delete"
+					onClick={evt => {
+						evt.preventDefault();
+						deleteFriend(id);
+					}}
+				>
+					Delete
+				</button>
+			</ActionsContainerStyled>
 		</SmurfStyled>
 	);
 };

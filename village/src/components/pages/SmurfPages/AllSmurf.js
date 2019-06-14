@@ -30,7 +30,7 @@ const navLinkArray = [
 ];
 
 export const AllSmurf = props => {
-	const { smurfs } = props;
+	const { smurfs, deleteFriend } = props;
 
 	return (
 		<React.Fragment>
@@ -38,7 +38,7 @@ export const AllSmurf = props => {
 			<main>
 				<ContainerStyles>
 					<h1>Smurf Village</h1>
-					<Smurfs smurfs={smurfs} {...props} />
+					<Smurfs smurfs={smurfs} {...props} deleteFriend={deleteFriend} />
 				</ContainerStyles>
 			</main>
 		</React.Fragment>
@@ -46,5 +46,6 @@ export const AllSmurf = props => {
 };
 
 Smurfs.propTypes = {
-	smurfs: PropTypes.array.isRequired
+	smurfs: PropTypes.array.isRequired,
+	deleteFriend: PropTypes.func.isRequired
 };
