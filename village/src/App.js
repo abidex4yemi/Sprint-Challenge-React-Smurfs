@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import uuid from 'uuid';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { AllSmurf } from './components/pages/SmurfPages/AllSmurf';
 import { SingleSmurf } from './components/pages/SmurfPages/SingleSmurf';
 import { AddSmurf } from './components/pages/SmurfPages/AddSmurf';
@@ -15,13 +15,13 @@ const routeDetails = [
 	},
 	{
 		id: uuid(),
-		path: '/smurf/:id',
-		ComponentToRender: SingleSmurf
+		path: '/smurf/add',
+		ComponentToRender: AddSmurf
 	},
 	{
 		id: uuid(),
-		path: '/smurf/add',
-		ComponentToRender: AddSmurf
+		path: '/smurf/:id',
+		ComponentToRender: SingleSmurf
 	}
 ];
 
@@ -59,7 +59,7 @@ export class App extends Component {
 		const { smurfs } = this.state;
 
 		return (
-			<React.Fragment>
+			<Switch>
 				{routeDetails.map(({ path, id, ComponentToRender }) => {
 					return (
 						<Route
@@ -72,7 +72,7 @@ export class App extends Component {
 						/>
 					);
 				})}
-			</React.Fragment>
+			</Switch>
 		);
 	}
 }
