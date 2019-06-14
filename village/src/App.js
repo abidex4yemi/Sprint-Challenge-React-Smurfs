@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SmurfForm from './components/Smurf/SmurfForm';
 import Smurfs from './components/Smurf/Smurfs';
 
-class App extends Component {
+export class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -21,5 +21,3 @@ class App extends Component {
 		);
 	}
 }
-
-export default App;
