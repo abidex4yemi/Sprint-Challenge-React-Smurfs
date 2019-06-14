@@ -49,6 +49,12 @@ export class App extends Component {
 			.finally(err => err);
 	};
 
+	updateSmurfsList = data => {
+		this.setState(() => ({
+			smurfs: data
+		}));
+	};
+
 	render() {
 		const { smurfs } = this.state;
 
@@ -56,7 +62,14 @@ export class App extends Component {
 			<React.Fragment>
 				{routeDetails.map(({ path, id, ComponentToRender }) => {
 					return (
-						<Route key={id} exact path={path} render={props => <ComponentToRender {...props} smurfs={smurfs} />} />
+						<Route
+							key={id}
+							exact
+							path={path}
+							render={props => (
+								<ComponentToRender {...props} smurfs={smurfs} updateSmurfsList={this.updateSmurfsList} />
+							)}
+						/>
 					);
 				})}
 			</React.Fragment>
