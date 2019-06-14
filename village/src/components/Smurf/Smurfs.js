@@ -1,32 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Smurf } from './Smurf';
+import PropTypes from 'prop-types';
 
-import Smurf from './Smurf';
+export const Smurfs = props => {
+	const { smurfs } = props;
 
-class Smurfs extends Component {
-  render() {
-    return (
-      <div className="Smurfs">
-        <h1>Smurf Village</h1>
-        <ul>
-          {this.props.smurfs.map(smurf => {
-            return (
-              <Smurf
-                name={smurf.name}
-                id={smurf.id}
-                age={smurf.age}
-                height={smurf.height}
-                key={smurf.id}
-              />
-            );
-          })}
-        </ul>
-      </div>
-    );
-  }
-}
-
-Smurf.defaultProps = {
- smurfs: [],
+	return (
+		<section>
+			<h1>Smurf Village</h1>
+			<div>{smurfs.map(smurf => <Smurf key={smurf.id} {...smurfs} />)}</div>
+		</section>
+	);
 };
 
-export default Smurfs;
+Smurfs.propTypes = {
+	smurfs: PropTypes.array.isRequired
+};
